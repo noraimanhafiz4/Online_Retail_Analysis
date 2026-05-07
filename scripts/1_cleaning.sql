@@ -139,7 +139,7 @@ DROP COLUMN row_num
 
 -- OR
 
-WITH HargaRujukan AS (
+WITH RefPrice AS (
     SELECT `Customer ID`, `Category`
     FROM (
         SELECT `Customer ID`, `Category`, 
@@ -151,7 +151,8 @@ WITH HargaRujukan AS (
     WHERE ranking = 1
 )
 UPDATE superstore_staging2 AS t1
-JOIN HargaRujukan AS t2 ON t1.`Customer ID` = t2.`Customer ID`
+JOIN RefPrice AS t2 ON t1.`Customer ID` = t2.`Customer ID`
 SET t1.`Category` = t2.`Category`
-WHERE t1.`Category` = '0';
+WHERE t1.`Category` = '0'
+;
 
